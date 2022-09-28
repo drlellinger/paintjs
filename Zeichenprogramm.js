@@ -5,11 +5,23 @@ function setup() {
 }
 
 //Funktion um Textfeld zu erstellen
-function textfeld(r,g,b,x,y,textlel,size)
-  {
-    fill(r,g,b);
-    textSize(size);
-    text(textlel,x,y);
+  function textfeld(r,g,b,x,y,textlel,size)
+    {
+      fill(r,g,b);
+      textSize(size);
+      text(textlel,x,y);
+    }
+//Funktion für Brushgröße -- funktioniert nicht
+  let brushSize = 20;
+  function keyPressed(){
+    if (keyCode === LEFT_ARROW)
+      {
+        brushSize = (brushSize - 1);
+      }
+    //if (keyCode === RIGHT_ARROW)
+    //  {
+        brushSize = (brushSize + 1);
+    //  }
   }
 
 //Variablen setzen
@@ -116,17 +128,30 @@ colour = 'black'
       }
   }
     
-  //farbeauswahl:
-  function farbauswahl(){
-    colorButton(350,'red')
-    colorButton(385,'green');
-    colorButton(420,'blue');
-    colorButton(455,'yellow');
-    colorButton(490,'white');
-    colorButton(525,'black');
+  //Löschen-Button
+  function loeschen(){
+    if(mouseIsPressed === true && mouseX > 310 && mouseX < 385 && mouseY > 5 && mouseY < 35)
+      {
+        normalButton(310,75,'white','Löschen',true);
+        background(240);
+      }
+    else
+      {
+        normalButton(310,75,'grey','Löschen',false);
+      }
   }
     
+  //farbeauswahl:
+  function farbauswahl(){
+    colorButton(450,'red')
+    colorButton(485,'green');
+    colorButton(520,'blue');
+    colorButton(555,'yellow');
+    colorButton(590,'white');
+    colorButton(625,'black');
+  }
     
+  //Aufruf der Funktionen 
   grundformSymbolleiste();
   schliessen();
   minimieren();
@@ -134,31 +159,19 @@ colour = 'black'
   stift();
   stiftaus();
   speichern();
-  farbauswahl()  
+  farbauswahl();
+  loeschen();
    
 }
 
-//Funktion für Brushgröße
-let brushSize = 20;
-function keyPressed(){
-  if (keyCode === LEFT_ARROW)
-    {
-      brushSize = (brushSize - 1);
-    }
-  //if (keyCode === RIGHT_ARROW)
-  //  {
-      brushSize = (brushSize + 1);
-  //  }
-}
-
 //Funktion für Brush
-function stifttool(colour){
-    if (mouseIsPressed===true){
-      fill (colour)
-      noStroke();
-      circle(mouseX,mouseY,brushSize)
-    }
-}
+  function stifttool(colour){
+      if (mouseIsPressed===true){
+        fill (colour)
+        noStroke();
+        circle(mouseX,mouseY,brushSize)
+      }
+  }
 
 function draw() {
   erzeugeSymbolleiste();
